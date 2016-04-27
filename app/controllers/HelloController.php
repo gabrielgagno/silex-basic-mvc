@@ -20,7 +20,7 @@ class HelloController
         }
         else
         {
-            $result = $app['db']->fetchAssoc("select * from user");
+            $result = $app['db']->fetchAssoc("select * from oauth_users");
             return $app->json($result, 200);
         }
     }
