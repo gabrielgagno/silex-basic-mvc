@@ -9,7 +9,9 @@
 namespace App\Controllers;
 
 
-class RequestFeeController
-{
+use OAuth2\HttpFoundationBridge\Request;
+use Silex\Application;
 
+class RequestFeeController extends Controller
+{
 }
