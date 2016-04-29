@@ -1,7 +1,8 @@
 {
-  "requestfees" : [
+  "requestfees": [
     {
-      "fee_amount" : 250
+      "id": 1,
+      "fee_amount": 250
     }
   ]
 }
