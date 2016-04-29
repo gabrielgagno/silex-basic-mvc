@@ -1,0 +1,9 @@
+{
+  "requestfees": [
+    {
+      "status": 100,
+      "fee_amount": 250,
+      "description": "cool"
+    }
+  ]
+}
