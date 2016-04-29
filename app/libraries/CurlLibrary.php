@@ -11,7 +11,7 @@ namespace App\Libraries;
 
 class CurlLibrary
 {
-    public static function curlRequest($url, $requestType = 'GET', array $headers = null, array $postFields = null)
+    public static function curlRequest($url, $requestType = 'GET', array $headers = array(), array $postFields = array())
     {
         $ch = curl_init($url);
         curl_setopt_array($ch, array(
