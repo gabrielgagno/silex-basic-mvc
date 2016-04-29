@@ -22,12 +22,14 @@
       "swiftmailer/swiftmailer": "5.*",
       "bshaffer/oauth2-server-php": "~1.8",
       "bshaffer/oauth2-server-httpfoundation-bridge": "~1.0",
-        "vlucas/phpdotenv": "^2.2"
+        "vlucas/phpdotenv": "^2.2",
+        "mashape/unirest-php": "^3.0"
     },
     "autoload" : {
       "psr-4" : {
         "App\\Controllers\\" : "app/controllers",
-        "App\\Libraries\\" : "app/libraries"
+        "App\\Libraries\\" : "app/libraries",
+        "App\\Middleware\\" : "app/middleware"
       }
     }
 }
