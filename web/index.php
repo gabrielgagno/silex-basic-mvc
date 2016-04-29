@@ -38,6 +38,7 @@ $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app->get('/hello', 'App\\Controllers\\HelloController::hello')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->get('/users', 'App\\Controllers\\HelloController::get')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->post('/requestfee', 'App\\Controllers\\RequestFeeController::requestFee')->before('App\\Middleware\\OAuthMiddleware::handle');
+$app->post('/cardlink', 'App\\Controllers\\CardLinkController::cardlink')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->mount('/oauth', new App\Libraries\OAuth2Library());
 
 

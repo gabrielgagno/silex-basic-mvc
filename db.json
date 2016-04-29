@@ -1,4 +1,10 @@
 {
+  "cardlink": [
+    {
+      "status": 51,
+      "description": "The customer mobile number cannot be blank"
+    }
+  ],
   "requestfees": [
     {
       "status": 100,
