@@ -40,5 +40,11 @@
       "status": "00",
       "description": "Not Found"
     }
+  ],
+  "resetOTP": [
+    {
+      "status": "00",
+      "description": "Not Found"
+    }
   ]
 }

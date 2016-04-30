@@ -43,6 +43,7 @@ $app->post('/validatemobilenumber', 'App\\Controllers\\ValidateMobileNumberContr
 $app->post('/topup', 'App\\Controllers\\TopUpController::topUp')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->post('/reverse', 'App\\Controllers\\ReverseController::reverse')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->post('/transactioninquiry', 'App\\Controllers\\TransactionInquiryController::transactionInquiry')->before('App\\Middleware\\OAuthMiddleware::handle');
+$app->post('/resetotp', 'App\\Controllers\\ResetOtpController::resetOtp')->before('App\\Middleware\\OAuthMiddleware::handle');
 
 // oauth routes
 $app->mount('/oauth', new App\Libraries\OAuth2Library());
