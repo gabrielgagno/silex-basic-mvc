@@ -26,5 +26,13 @@
       "mobile_no": "09061334476",
       "expDate": "010117"
     }
+  ],
+  "reverse": [
+    {
+      "status": "00",
+      "ref_no": "22414141",
+      "description": "Transaction Cancelled",
+      "mobile_no": "090232323422"
+    }
   ]
 }
