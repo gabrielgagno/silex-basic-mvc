@@ -17,5 +17,14 @@
       "fee_amount": 250,
       "description": "cool"
     }
+  ],
+  "topup": [
+    {
+      "status": "00",
+      "ref_no": "12345678",
+      "description": "Transaction Successful",
+      "mobile_no": "09061334476",
+      "expDate": "010117"
+    }
   ]
 }

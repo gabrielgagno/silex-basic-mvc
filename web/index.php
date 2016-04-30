@@ -40,6 +40,9 @@ $app->get('/users', 'App\\Controllers\\HelloController::get')->before('App\\Midd
 $app->post('/requestfee', 'App\\Controllers\\RequestFeeController::requestFee')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->post('/cardlink', 'App\\Controllers\\CardLinkController::cardlink')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->post('/validatemobilenumber', 'App\\Controllers\\ValidateMobileNumberController::validateMobileNumber')->before('App\\Middleware\\OAuthMiddleware::handle');
+$app->post('/topup', 'App\\Controllers\\TopUpController::topUp')->before('App\\Middleware\\OAuthMiddleware::handle');
+
+// oauth routes
 $app->mount('/oauth', new App\Libraries\OAuth2Library());
 
 
