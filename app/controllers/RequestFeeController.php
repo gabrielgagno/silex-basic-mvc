@@ -20,7 +20,7 @@ class RequestFeeController extends Controller
         // TODO validation procedure
         $p2meResponse = CurlRequest::get("http://localhost:3000/requestfees", null, null);
         $response = array(
-            'status' => 10,
+            'status' => "success",
             'timestamp' => date('Y-m-d H:i:s'),
             'p2me_result'   => $p2meResponse->body
         );
