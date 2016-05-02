@@ -42,7 +42,7 @@ $app->error(function(\Exception $e, $code) {
                 "timestamp"     => date('Y-m-d H:i:s'),
                 "p2me_result"   => "Internal Server Error"
             );
-            return new \Symfony\Component\HttpFoundation\Response(json_encode($status), $code);
+            return new \Symfony\Component\HttpFoundation\Response(json_encode($status), $code, array('content-type' => 'application/json'));
             break;
         case 404:
             $status = array(
@@ -50,7 +50,7 @@ $app->error(function(\Exception $e, $code) {
                 "timestamp"     => date('Y-m-d H:i:s'),
                 "p2me_result"   => "Resource Not Found"
             );
-            return new \Symfony\Component\HttpFoundation\Response(json_encode($status), $code);
+            return new \Symfony\Component\HttpFoundation\Response(json_encode($status), $code, array('content-type' => 'application/json'));
             break;
     }
 });
