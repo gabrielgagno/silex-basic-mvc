@@ -32,6 +32,9 @@ client_secret <16-bit string from database table oauth_clients>
 GET /foo
 Authorization Bearer <access_token>
 ```
+## Testing the API
+Included here is a ```db.json``` file intended for the ```json-server``` package. Please install this package
+using ```npm install --g json-server``` and running ```json-server --watch db.json```.
 
 ## Updating
 If new releases are up, make sure to run ```composer update```
