@@ -1,14 +1,15 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
 
+//initialize Silex Application Instance
 $app = new Silex\Application();
 $app->boot();
-$app['debug'] = true;
+$app['environment'] = 'local'; // initialize app environment here
 
 //initialize dotenv
-$app['env'] = new Dotenv\Dotenv(__DIR__.'/../');
+$app['env'] = new Dotenv\Dotenv(__DIR__.'/../', '.env.'.$app['environment']?$app['environment']:'local');
 $app['env']->load();
-
+$app['debug'] = getenv('APP_DEBUG')?getenv('APP_DEBUG'):true;
 //register services
 
 //register doctrine db provider
