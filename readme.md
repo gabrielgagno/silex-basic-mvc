@@ -9,9 +9,9 @@ The author is Gabriel John Gagno of Stratpoint Technologies, Inc. You can email 
 * Composer
 * MySQL
 * PHP PDO for MySQL
-* MySQL Database structure (Dump included in root/dump folder)
+* MySQL Database structure (Dump included in root/dump folder. Run structure-dump first, then data-dump last)
 
-*__NOTE:__ You can also run the Laravel migrations if P2ME CMS Is already set up. This way, there is no need
+__NOTE:__ You can also run the Laravel migrations if P2ME CMS Is already set up. This way, there is no need
 to run the MySQL dumps included*
 
 ### Setup
