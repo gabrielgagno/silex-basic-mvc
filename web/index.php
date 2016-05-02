@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
-//require_once __DIR__.'/../app/config/database.php';
 
 $app = new Silex\Application();
 $app->boot();
@@ -33,6 +32,28 @@ $app->register(new Silex\Provider\SecurityServiceProvider());
 //register validator provider (optional)
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 
+//register error handler
+$app->error(function(\Exception $e, $code) {
+    $status = null;
+    switch ($code) {
+        case 500:
+            $status = array(
+                "status"        => "fail",
+                "timestamp"     => date('Y-m-d H:i:s'),
+                "p2me_result"   => "Internal Server Error"
+            );
+            return new \Symfony\Component\HttpFoundation\Response(json_encode($status), $code);
+            break;
+        case 404:
+            $status = array(
+                "status"        => "fail",
+                "timestamp"     => date('Y-m-d H:i:s'),
+                "p2me_result"   => "Resource Not Found"
+            );
+            return new \Symfony\Component\HttpFoundation\Response(json_encode($status), $code);
+            break;
+    }
+});
 
 //routes
 $app->get('/hello', 'App\\Controllers\\HelloController::hello')->before('App\\Middleware\\OAuthMiddleware::handle');
