@@ -4,9 +4,9 @@ require_once __DIR__.'/../vendor/autoload.php';
 $app = new Silex\Application();
 $app->boot();
 $app['debug'] = true;
-
+$app['environment'] = 'local';
 //initialize dotenv
-$app['env'] = new Dotenv\Dotenv(__DIR__.'/../');
+$app['env'] = new Dotenv\Dotenv(__DIR__.'/../', '.env.'.$app['environment']);
 $app['env']->load();
 
 //register services
