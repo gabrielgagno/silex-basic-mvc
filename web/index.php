@@ -34,6 +34,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider());
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 
 //register error handler
+/*
 $app->error(function(\Exception $e, $code) {
     $status = null;
     switch ($code) {
@@ -55,6 +56,7 @@ $app->error(function(\Exception $e, $code) {
             break;
     }
 });
+*/
 
 //routes
 $app->get('/hello', 'App\\Controllers\\HelloController::hello')->before('App\\Middleware\\OAuthMiddleware::handle');

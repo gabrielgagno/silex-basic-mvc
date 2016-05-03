@@ -93,4 +93,9 @@ class AppController
         );
         return $app->json($response);
     }
+
+    private function handleResponse()
+    {
+        
+    }
 }
