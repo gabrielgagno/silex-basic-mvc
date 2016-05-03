@@ -59,13 +59,13 @@ $app->error(function(\Exception $e, $code) {
 //routes
 $app->get('/hello', 'App\\Controllers\\HelloController::hello')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->get('/users', 'App\\Controllers\\HelloController::get')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->post('/requestfee', 'App\\Controllers\\RequestFeeController::requestFee')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->post('/cardlink', 'App\\Controllers\\CardLinkController::cardlink')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->post('/validatemobilenumber', 'App\\Controllers\\ValidateMobileNumberController::validateMobileNumber')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->post('/topup', 'App\\Controllers\\TopUpController::topUp')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->post('/reverse', 'App\\Controllers\\ReverseController::reverse')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->post('/transactioninquiry', 'App\\Controllers\\TransactionInquiryController::transactionInquiry')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->post('/resetotp', 'App\\Controllers\\ResetOtpController::resetOtp')->before('App\\Middleware\\OAuthMiddleware::handle');
+$app->post('/requestfee', 'App\\Controllers\\AppController::requestFee')->before('App\\Middleware\\OAuthMiddleware::handle');
+$app->post('/cardlink', 'App\\Controllers\\AppController::cardlink')->before('App\\Middleware\\OAuthMiddleware::handle');
+$app->post('/validatemobilenumber', 'App\\Controllers\\AppController::validateMobileNumber')->before('App\\Middleware\\OAuthMiddleware::handle');
+$app->post('/topup', 'App\\Controllers\\AppController::topUp')->before('App\\Middleware\\OAuthMiddleware::handle');
+$app->post('/reverse', 'App\\Controllers\\AppController::reverse')->before('App\\Middleware\\OAuthMiddleware::handle');
+$app->post('/transactioninquiry', 'App\\Controllers\\AppController::transactionInquiry')->before('App\\Middleware\\OAuthMiddleware::handle');
+$app->post('/resetotp', 'App\\Controllers\\AppController::resetOtp')->before('App\\Middleware\\OAuthMiddleware::handle');
 
 // oauth routes
 $app->mount('/oauth', new App\Libraries\OAuth2Library());
