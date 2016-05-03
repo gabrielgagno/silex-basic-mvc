@@ -18,7 +18,7 @@ class AppController
 {
     public function cardLink(Application $app, Request $request)
     {
-        $p2meResponse = CurlRequest::get("http://localhost:3000/cardlink", null, null);
+        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/cardlink', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -31,8 +31,7 @@ class AppController
 
     public function requestFee(Request $request, Application $app)
     {
-        $p2meResponse = CurlRequest::get("http://localhost:3000/requestfees", null, null);
-
+        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/requestfees', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -45,7 +44,7 @@ class AppController
 
     public function resetOtp(Application $app, Request $request)
     {
-        $p2meResponse = CurlRequest::get("http://localhost:3000/resetOTP", null, null);
+        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/resetOTP', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -58,7 +57,7 @@ class AppController
 
     public function reverse(Application $app, Request $request)
     {
-        $p2meResponse = CurlRequest::get("http://localhost:3000/reverse", null, null);
+        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/reverse', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -71,7 +70,7 @@ class AppController
 
     public function topUp(Application $app, Request $request)
     {
-        $p2meResponse = CurlRequest::get("http://localhost:3000/topup", null, null);
+        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/topup', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -84,7 +83,7 @@ class AppController
 
     public function transactionInquiry(Application $app, Request $request)
     {
-        $p2meResponse = CurlRequest::get("http://localhost:3000/transactioninquiry", null, null);
+        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/transactioninquiry', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -97,7 +96,7 @@ class AppController
 
     public function validateMobileNumber(Application $app, Request $request)
     {
-        $p2meResponse = CurlRequest::get("http://localhost:3000/validatemobilenumber", null, null);
+        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/validatemobilenumber', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -152,5 +151,10 @@ class AppController
         );
 
         return $response;
+    }
+
+    private function handleRequest(Request $request, $url, $functionName)
+    {
+        return CurlRequest::get($url, array('x-id' => base64_encode($functionName.date('Y-m-d H:i:s'))), $request->request->all());
     }
 }
