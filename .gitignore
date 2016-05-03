@@ -2,3 +2,7 @@ vendor/
 .idea/
 logs/*.txt
 .env
+.env.local
+.env.production
+.env.staging
+.env.dev
