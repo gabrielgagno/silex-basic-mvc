@@ -65,7 +65,7 @@ $app->post('/cardlink', 'App\\Controllers\\AppController::cardlink')->before('Ap
 $app->post('/validatemobilenumber', 'App\\Controllers\\AppController::validateMobileNumber')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->post('/topup', 'App\\Controllers\\AppController::topUp')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->post('/reverse', 'App\\Controllers\\AppController::reverse')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->post('/transactioninquiry', 'App\\Controllers\\AppController::transactionInquiry')->before('App\\Middleware\\OAuthMiddleware::handle');
+$app->get('/transactioninquiry', 'App\\Controllers\\AppController::transactionInquiry')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->post('/resetotp', 'App\\Controllers\\AppController::resetOtp')->before('App\\Middleware\\OAuthMiddleware::handle');
 
 // oauth routes
