@@ -24,7 +24,8 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 
 //register logger service provider
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
-    'monolog.logfile' => __DIR__.'/../logs/log-'.date('Y-m-d').'.txt'
+    'monolog.logfile' => __DIR__.'/../logs/log-'.date('Y-m-d').'.log',
+    'monolog.name' => 'p2me_api'
 ));
 
 //register security service provider
