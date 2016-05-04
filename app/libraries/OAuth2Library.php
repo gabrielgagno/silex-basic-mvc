@@ -17,9 +17,13 @@ use OAuth2\HttpFoundationBridge\Response as BridgeResponse;
 
 class OAuth2Library implements ControllerProviderInterface
 {
+    /**
+     * Allows initial setup of the OAuth 2.0 Specification for this Middleware
+     * @param Application $app
+     */
     public function setup(Application $app)
     {
-        $storage = new OAuth2PdoStorage($this->constructDBString());
+        $storage = new OAuth2PdoStorage($this->_constructDBString());
 
         $server = new OAuth2Server($storage, array('issuer' => $_SERVER['HTTP_HOST']));
 
@@ -30,6 +34,11 @@ class OAuth2Library implements ControllerProviderInterface
         $app['oauth_response'] = new BridgeResponse();
     }
 
+    /**
+     * Executes setup function, allows this library to function as a service
+     * @param Application $app
+     * @return mixed
+     */
     public function connect(Application $app)
     {
         $this->setup($app);
@@ -40,7 +49,11 @@ class OAuth2Library implements ControllerProviderInterface
         return $routing;
     }
 
-    private function constructDBString()
+    /**
+     * Simple constructor of database connection 
+     * @return array
+     */
+    private function _constructDBString()
     {
         return array(
             'dsn'       =>  getenv('DB_CONNECTION').':dbname='.getenv('DB_DATABASE').';host='.getenv('DB_HOST'),

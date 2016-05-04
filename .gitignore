@@ -1,6 +1,6 @@
 vendor/
 .idea/
-logs/*.txt
+logs/*.log
 .env
 .env.local
 .env.production
