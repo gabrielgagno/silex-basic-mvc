@@ -17,49 +17,49 @@ class AppController
 {
     public function cardLink(Application $app)
     {
-        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/cardlink', __FUNCTION__);
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('CARD_LINK'), __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
         return $response;
     }
 
     public function requestFee(Application $app)
     {
-        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/requestfees', __FUNCTION__);
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('REQUEST_FEE'), __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
         return $response;
     }
 
     public function resetOtp(Application $app)
     {
-        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/resetOTP', __FUNCTION__);
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('RESET_OTP'), __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
         return $response;
     }
 
     public function reverse(Application $app)
     {
-        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/reverse', __FUNCTION__);
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('REVERSE'), __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
         return $response;
     }
 
     public function topUp(Application $app)
     {
-        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/topup', __FUNCTION__);
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('TOP_UP'), __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
         return $response;
     }
 
     public function transactionInquiry(Application $app)
     {
-        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/transactioninquiry', __FUNCTION__);
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('TRANSACTION_INQUIRY'), __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
         return $response;
     }
 
     public function validateMobileNumber(Application $app)
     {
-        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/validatemobilenumber', __FUNCTION__);
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('VALIDATE_MOBILE_NUMBER'), __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
         return $response;
     }
