@@ -17,8 +17,8 @@ class AppController
 {
     public function cardLink(Application $app)
     {
-        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/cardlink', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
+        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/cardlink', __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
             $p2meResponse->code,
@@ -30,8 +30,8 @@ class AppController
 
     public function requestFee(Application $app)
     {
-        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/requestfees', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
+        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/requestfees', __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
             $p2meResponse->code,
@@ -43,8 +43,8 @@ class AppController
 
     public function resetOtp(Application $app)
     {
-        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/resetOTP', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
+        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/resetOTP', __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
             $p2meResponse->code,
@@ -56,8 +56,8 @@ class AppController
 
     public function reverse(Application $app)
     {
-        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/reverse', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
+        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/reverse', __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
             $p2meResponse->code,
@@ -69,8 +69,8 @@ class AppController
 
     public function topUp(Application $app)
     {
-        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/topup', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
+        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/topup', __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
             $p2meResponse->code,
@@ -82,8 +82,8 @@ class AppController
 
     public function transactionInquiry(Application $app)
     {
-        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/transactioninquiry', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
+        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/transactioninquiry', __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
             $p2meResponse->code,
@@ -95,8 +95,8 @@ class AppController
 
     public function validateMobileNumber(Application $app)
     {
-        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/validatemobilenumber', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
+        $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/validatemobilenumber', __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
             $p2meResponse->code,
@@ -106,7 +106,7 @@ class AppController
         );
     }
 
-    private function handleResponse($p2meResponse)
+    private function _handleResponse($p2meResponse)
     {
 
         $code = $p2meResponse->code;
@@ -152,7 +152,7 @@ class AppController
         return $response;
     }
 
-    private function handleRequest($request, $url, $functionName)
+    private function _handleRequest($request, $url, $functionName)
     {
         return Request::get($url, array('x-id' => base64_encode($functionName.date('Y-m-d H:i:s'))), $request->request->all());
     }
