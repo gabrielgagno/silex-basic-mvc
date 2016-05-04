@@ -59,8 +59,6 @@ $app->error(function(\Exception $e, $code) {
 */
 
 //routes
-$app->get('/hello', 'App\\Controllers\\HelloController::hello')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->get('/users', 'App\\Controllers\\HelloController::get')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->post('/requestfee', 'App\\Controllers\\AppController::requestFee')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->post('/cardlink', 'App\\Controllers\\AppController::cardlink')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->post('/validatemobilenumber', 'App\\Controllers\\AppController::validateMobileNumber')->before('App\\Middleware\\OAuthMiddleware::handle');
