@@ -19,91 +19,49 @@ class AppController
     {
         $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/cardlink', __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        return $response;
     }
 
     public function requestFee(Application $app)
     {
         $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/requestfees', __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        return $response;
     }
 
     public function resetOtp(Application $app)
     {
         $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/resetOTP', __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        return $response;
     }
 
     public function reverse(Application $app)
     {
         $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/reverse', __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        return $response;
     }
 
     public function topUp(Application $app)
     {
         $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/topup', __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        return $response;
     }
 
     public function transactionInquiry(Application $app)
     {
         $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/transactioninquiry', __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        return $response;
     }
 
     public function validateMobileNumber(Application $app)
     {
         $p2meResponse = $this->_handleRequest($app['request'], 'http://localhost:3000/validatemobilenumber', __FUNCTION__);
         $response = $this->_handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        return $response;
     }
 
     private function _handleResponse($p2meResponse)
@@ -149,7 +107,13 @@ class AppController
             "p2me_result"   => $message
         );
 
-        return $response;
+        return new Response(
+            json_encode($response),
+            $p2meResponse->code,
+            array(
+                'Content-type'  => 'application/json'
+            )
+        );
     }
 
     private function _handleRequest($request, $url, $functionName)
