@@ -9,16 +9,15 @@
 namespace App\Controllers;
 
 use Silex\Application;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Unirest\Request as CurlRequest;
+use Unirest\Request;
 
 
 class AppController
 {
-    public function cardLink(Application $app, Request $request)
+    public function cardLink(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/cardlink', __FUNCTION__);
+        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/cardlink', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -29,9 +28,9 @@ class AppController
         );
     }
 
-    public function requestFee(Request $request, Application $app)
+    public function requestFee(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/requestfees', __FUNCTION__);
+        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/requestfees', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -42,9 +41,9 @@ class AppController
         );
     }
 
-    public function resetOtp(Application $app, Request $request)
+    public function resetOtp(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/resetOTP', __FUNCTION__);
+        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/resetOTP', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -55,9 +54,9 @@ class AppController
         );
     }
 
-    public function reverse(Application $app, Request $request)
+    public function reverse(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/reverse', __FUNCTION__);
+        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/reverse', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -68,9 +67,9 @@ class AppController
         );
     }
 
-    public function topUp(Application $app, Request $request)
+    public function topUp(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/topup', __FUNCTION__);
+        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/topup', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -81,9 +80,9 @@ class AppController
         );
     }
 
-    public function transactionInquiry(Application $app, Request $request)
+    public function transactionInquiry(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/transactioninquiry', __FUNCTION__);
+        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/transactioninquiry', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -94,9 +93,9 @@ class AppController
         );
     }
 
-    public function validateMobileNumber(Application $app, Request $request)
+    public function validateMobileNumber(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/validatemobilenumber', __FUNCTION__);
+        $p2meResponse = $this->handleRequest($app['request'], 'http://localhost:3000/validatemobilenumber', __FUNCTION__);
         $response = $this->handleResponse($p2meResponse);
         return new Response(
             json_encode($response),
@@ -153,8 +152,8 @@ class AppController
         return $response;
     }
 
-    private function handleRequest(Request $request, $url, $functionName)
+    private function handleRequest($request, $url, $functionName)
     {
-        return CurlRequest::get($url, array('x-id' => base64_encode($functionName.date('Y-m-d H:i:s'))), $request->request->all());
+        return Request::get($url, array('x-id' => base64_encode($functionName.date('Y-m-d H:i:s'))), $request->request->all());
     }
 }
