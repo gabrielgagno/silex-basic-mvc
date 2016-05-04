@@ -9,110 +9,112 @@
 namespace App\Controllers;
 
 use Silex\Application;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Unirest\Request as CurlRequest;
+use Unirest\Request;
 
 
 class AppController
 {
-    public function cardLink(Application $app, Request $request)
+    /**
+     * Handles card link API calls
+     * @param Application $app
+     * @return Response
+     */
+    public function cardLink(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/cardlink', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('CARD_LINK'), __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
+        return $response;
     }
 
-    public function requestFee(Request $request, Application $app)
+    /**
+     * Handles Request Fee API calls
+     * @param Application $app
+     * @return Response
+     */
+    public function requestFee(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/requestfees', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('REQUEST_FEE'), __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
+        return $response;
     }
 
-    public function resetOtp(Application $app, Request $request)
+    /**
+     * Handles Reset OTP API calls
+     * @param Application $app
+     * @return Response
+     */
+    public function resetOtp(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/resetOTP', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('RESET_OTP'), __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
+        return $response;
     }
 
-    public function reverse(Application $app, Request $request)
+    /**
+     * Handles Reverse API Calls
+     * @param Application $app
+     * @return Response
+     */
+    public function reverse(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/reverse', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('REVERSE'), __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
+        return $response;
     }
 
-    public function topUp(Application $app, Request $request)
+    /**
+     * Handles Top UP API Calls
+     * @param Application $app
+     * @return Response
+     */
+    public function topUp(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/topup', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('TOP_UP'), __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
+        return $response;
     }
 
-    public function transactionInquiry(Application $app, Request $request)
+    /**
+     * Handles transaction inquiry API calls
+     * @param Application $app
+     * @return Response
+     */
+    public function transactionInquiry(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/transactioninquiry', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('TRANSACTION_INQUIRY'), __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
+        return $response;
     }
 
-    public function validateMobileNumber(Application $app, Request $request)
+    /**
+     * Handles validate mobile number API calls
+     * @param Application $app
+     * @return Response
+     */
+    public function validateMobileNumber(Application $app)
     {
-        $p2meResponse = $this->handleRequest($request, 'http://localhost:3000/validatemobilenumber', __FUNCTION__);
-        $response = $this->handleResponse($p2meResponse);
-        return new Response(
-            json_encode($response),
-            $p2meResponse->code,
-            array(
-                'Content-type'  => 'application/json'
-            )
-        );
+        $p2meResponse = $this->_handleRequest($app['request'], getenv('VALIDATE_MOBILE_NUMBER'), __FUNCTION__);
+        $response = $this->_handleResponse($p2meResponse);
+        return $response;
     }
 
-    private function handleResponse($p2meResponse)
+    /**
+     * Handles and formats responses returned by P2ME API calls
+     * @param $p2meResponse
+     * @return Response
+     */
+    private function _handleResponse($p2meResponse)
     {
 
         $code = $p2meResponse->code;
         $status = "fail";
         $message = null; // TODO replace all messages with simple p2meResponse->body later
+
+        # This switch case handles responses sent by the P2ME API. Since the P2ME API does not send
+        # exceptions whenever there are errors on its side (Internal Server errors are only sent as
+        # is and will not trigger any exception on the middleware's part), it should be handled by
+        # looking at the response code it sent and modify the response accordingly.
         switch($code) {
             case 201:
                 $message = "No Content";
@@ -150,11 +152,24 @@ class AppController
             "p2me_result"   => $message
         );
 
-        return $response;
+        return new Response(
+            json_encode($response),
+            $p2meResponse->code,
+            array(
+                'Content-type'  => 'application/json'
+            )
+        );
     }
 
-    private function handleRequest(Request $request, $url, $functionName)
+    /**
+     * Handles and customizes requests to be sent to P2ME API
+     * @param $request
+     * @param $url
+     * @param $functionName
+     * @return \Unirest\Response
+     */
+    private function _handleRequest($request, $url, $functionName)
     {
-        return CurlRequest::get($url, array('x-id' => base64_encode($functionName.date('Y-m-d H:i:s'))), $request->request->all());
+        return Request::get($url, array('x-id' => base64_encode($functionName.date('Y-m-d H:i:s'))), $request->request->all());
     }
 }

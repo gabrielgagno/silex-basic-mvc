@@ -12,11 +12,15 @@ use Silex\Application;
 
 class OAuthController
 {
+    /**
+     * Returns an access token for the user
+     * @param Application $app
+     * @return mixed
+     */
     public function authorize(Application $app)
     {
         $server = $app['oauth_server'];
         $response = $app['oauth_response'];
         return $server->handleTokenRequest($app['request'], $response);
-        //return $app->json($encoded, 200);
     }
 }
