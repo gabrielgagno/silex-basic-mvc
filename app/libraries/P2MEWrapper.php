@@ -14,7 +14,7 @@ class P2MEWrapper
 {
     public static function requestHandler($request, $url, $functionName)
     {
-        return Request::get($url, array('x-id' => base64_encode($functionName.date('Y-m-d H:i:s'))), $request->request->all());
+        return Request::get($url, array('x-id' => base64_encode($functionName.date('Y-m-d H:i:s'))), json_encode($request->request->all()));
     }
 
     public static function responseHandler($code, $p2meResponse = null)
