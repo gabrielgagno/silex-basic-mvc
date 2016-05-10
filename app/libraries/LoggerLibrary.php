@@ -13,6 +13,12 @@ use Silex\Application;
 
 class LoggerLibrary
 {
+
+    public static function requestLogger()
+    {
+
+    }
+    
     public function successResponseLogger(Application $app)
     {
         
