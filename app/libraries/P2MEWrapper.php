@@ -21,7 +21,7 @@ class P2MEWrapper
         return Request::get($url, array('x-id' => $xId), json_encode($request->request->all()));
     }
 
-    public static function responseHandler($code, $p2meResponse = null)
+    public static function responseHandler($logger, $code, $p2meResponse = null)
     {
         $status = "fail";
         $message = null; // TODO replace all messages with simple p2meResponse->body later
@@ -66,7 +66,7 @@ class P2MEWrapper
             "timestamp"     => date("Y-m-d H:i:s"),
             "p2me_result"   => $message
         );
-
+        $logger->addInfo("RESPONSE ".$code." ".json_encode($message));
         return new Response(
             json_encode($response),
             $code,
