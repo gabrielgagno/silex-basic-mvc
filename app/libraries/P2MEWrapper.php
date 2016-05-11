@@ -8,16 +8,20 @@
 
 namespace App\Libraries;
 
+use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;
 use Unirest\Request;
+use App\Libraries\LoggerLibrary;
 class P2MEWrapper
 {
-    public static function requestHandler($request, $url, $functionName)
+    public static function requestHandler($logger, $request, $url, $functionName)
     {
-        return Request::get($url, array('x-id' => base64_encode($functionName.date('Y-m-d H:i:s'))), json_encode($request->request->all()));
+        $xId = base64_encode($functionName.date('Y-m-d H:i:s'));
+        $logger->addInfo("REQUEST ".$url." ".$xId." ".json_encode($request->request->all()));
+        return Request::get($url, array('x-id' => $xId), json_encode($request->request->all()));
     }
 
-    public static function responseHandler($code, $p2meResponse = null)
+    public static function responseHandler($logger, $code, $p2meResponse = null)
     {
         $status = "fail";
         $message = null; // TODO replace all messages with simple p2meResponse->body later
@@ -62,7 +66,7 @@ class P2MEWrapper
             "timestamp"     => date("Y-m-d H:i:s"),
             "p2me_result"   => $message
         );
-
+        $logger->addInfo("RESPONSE ".$code." ".json_encode($message));
         return new Response(
             json_encode($response),
             $code,
