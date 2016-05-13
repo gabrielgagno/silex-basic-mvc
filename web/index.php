@@ -4,13 +4,11 @@ require_once __DIR__.'/../vendor/autoload.php';
 # initialize Silex Application Instance
 $app = new Silex\Application();
 $app->boot();
-$app['environment'] = 'local'; // initialize app environment here
-
-//initialize dotenv
-$app['env'] = new Dotenv\Dotenv(__DIR__.'/../', '.env.'.$app['environment']);
-$app['env']->load();
 
 # register services
+
+# register config service provider for entire app
+$app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../app/config/app.php"));
 
 # register config service provder for database
 $app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../app/config/database.php"));
@@ -26,6 +24,10 @@ $app->register(new Silex\Provider\SecurityServiceProvider());
 
 # register validator provider (optional)
 $app->register(new Silex\Provider\ValidatorServiceProvider());
+
+# initialize environment here
+$app['env'] = new Dotenv\Dotenv(__DIR__.'/../', '.env.'.$app['environment']);
+$app['env']->load();
 
 # routes
 $app->get('/requestfee', 'App\\Controllers\\AppController::requestFee')->before('App\\Middleware\\OAuthMiddleware::handle');
