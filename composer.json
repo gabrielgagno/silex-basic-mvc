@@ -23,7 +23,8 @@
       "bshaffer/oauth2-server-php": "~1.8",
       "bshaffer/oauth2-server-httpfoundation-bridge": "~1.0",
         "vlucas/phpdotenv": "^2.2",
-        "mashape/unirest-php": "^3.0"
+        "mashape/unirest-php": "^3.0",
+        "igorw/config-service-provider": "^1.2"
     },
     "autoload" : {
       "psr-4" : {

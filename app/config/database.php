@@ -7,17 +7,17 @@
  */
 
 return array(
-    'db' => 'mysql',
+    'db' => \App\Libraries\CoreHelpersLibrary::env('DB_CONNECTION', 'mysql'),
     'settings' => array(
         'mysql' => array(
-            'dbname' => 'silexdb',
-            'username'   => 'root',
-            'password'  => '',
-            'host'   => 'localhost',
+            'dbname' => \App\Libraries\CoreHelpersLibrary::env('DB_DATABASE', 'sample'),
+            'username'   => \App\Libraries\CoreHelpersLibrary::env('DB_USERNAME', 'usr'),
+            'password'  => \App\Libraries\CoreHelpersLibrary::env('DB_PASSWORD', 'pass'),
+            'host'   => \App\Libraries\CoreHelpersLibrary::env('DB_HOST', 'localhost'),
             'port'   => '3306'
         )
     ),
     'drivers' => array(
-        'mysql' => 'pdo_mysql'
+        'mysql' => \App\Libraries\CoreHelpersLibrary::env('DB_DRIVER', 'pdo_mysql')
     )
 );
