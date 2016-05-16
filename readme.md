@@ -19,6 +19,9 @@ to run the MySQL dumps included*
 2. This software uses environments for easier configuration. Create a ```.env``` file
  to configure needed settings. Please refer to ```.env.example``` for the data needed to be filled up.
 
+ *This middleware is configured for multiple environments, allowing for separate environment configurations
+ as needed. To change this, change the ```environment``` key on ```app/config/app.php``` configuration file.*
+
 ## Running the API
 1. Ask for authentication using the POST request.
 ```
