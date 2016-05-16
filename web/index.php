@@ -29,6 +29,8 @@ $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app['env'] = new Dotenv\Dotenv(__DIR__.'/../', '.env.'.$app['environment']);
 $app['env']->load();
 
+$app['debug'] = \App\Libraries\CoreHelpersLibrary::env('APP_DEBUG', false);
+
 # routes
 $app->get('/requestfee', 'App\\Controllers\\AppController::requestFee')->before('App\\Middleware\\OAuthMiddleware::handle');
 $app->post('/cardlink', 'App\\Controllers\\AppController::cardlink')->before('App\\Middleware\\OAuthMiddleware::handle');
