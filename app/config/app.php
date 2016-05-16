@@ -7,5 +7,6 @@
  */
 
 return array(
-    'environment' => 'local'
+    'environment' => 'local',
+    'name'    => 'p2me_api'
 );
