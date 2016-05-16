@@ -26,8 +26,13 @@ $app->register(new Silex\Provider\SecurityServiceProvider());
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 
 # initialize environment here
-$app['env'] = new Dotenv\Dotenv(__DIR__.'/../', '.env.'.$app['environment']);
-$app['env']->load();
+try{
+    $app['env'] = new Dotenv\Dotenv(__DIR__.'/../', '.env.'.$app['environment']);
+    $app['env']->load();
+}
+catch (Exception $e) {
+    $app->json(['error' => 500, 'error_description' => 'Environment Not Found'], 500)->send();
+}
 
 $app['debug'] = \App\Libraries\CoreHelpersLibrary::env('APP_DEBUG', false);
 
