@@ -1,9 +1,10 @@
 <?php
 /**
- * Created by IntelliJ IDEA.
- * User: gabrielgagno
- * Date: 5/4/16
- * Time: 12:04 PM
+ * P2MEWrapper.php
+ * Contains the P2MEWrapper class
+ * @author Gabriel John P. Gagno
+ * @version 1.0
+ * @copyright 2016 Stratpoint Technologies, Inc.
  */
 
 namespace App\Libraries;
@@ -11,9 +12,22 @@ namespace App\Libraries;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;
 use Unirest\Request;
-use App\Libraries\LoggerLibrary;
+
+/**
+ * Class P2MEWrapper
+ * A wrapper class for request and responses by the P2ME API
+ * @package App\Libraries
+ */
 class P2MEWrapper
 {
+    /**
+     * Formats, formalizes, and logs requests sent to P2ME API
+     * @param $logger
+     * @param $request
+     * @param $url
+     * @param $functionName
+     * @return \Unirest\Response
+     */
     public static function requestHandler($logger, $request, $url, $functionName)
     {
         $xId = base64_encode($functionName.date('Y-m-d H:i:s'));
@@ -21,6 +35,13 @@ class P2MEWrapper
         return Request::get($url, array('x-id' => $xId), json_encode($request->request->all()));
     }
 
+    /**
+     * Formats, formalizes, and logs responses received from P2ME API
+     * @param $logger
+     * @param $code
+     * @param null $p2meResponse
+     * @return Response
+     */
     public static function responseHandler($logger, $code, $p2meResponse = null)
     {
         $status = "fail";

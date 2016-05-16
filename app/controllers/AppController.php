@@ -1,9 +1,10 @@
 <?php
 /**
- * Created by IntelliJ IDEA.
- * User: gabrielgagno
- * Date: 5/3/16
- * Time: 9:25 AM
+ * AppController.php
+ * File that contains the AppController class
+ * @author Gabriel John P. Gagno
+ * @version 1.0
+ * @copyright 2016 Stratpoint Technologies, Inc.
  */
 
 namespace App\Controllers;
@@ -13,7 +14,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Unirest\Request;
 use App\Libraries\P2MEWrapper;
 
-
+/**
+ * Class AppController
+ * Main controller for this application. Allows access to several P2ME APIs.
+ * @package App\Controllers
+ */
 class AppController
 {
     /**

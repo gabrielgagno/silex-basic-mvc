@@ -1,9 +1,10 @@
 <?php
 /**
- * Created by IntelliJ IDEA.
- * User: gabrielgagno
- * Date: 4/22/16
- * Time: 7:01 PM
+ * bootstrap/app.php
+ * The main loading file of this P2ME API Middleware
+ * @author Gabriel John P. Gagno
+ * @version 1.0
+ * @copyright 2016 Stratpoint Technologies, Inc.
  */
 require_once __DIR__.'/../../vendor/autoload.php';
 
@@ -21,7 +22,7 @@ $app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/databas
 
 # register logger service provider
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
-    'monolog.logfile' => __DIR__.'/../logs/log-'.date('Y-m-d').'.log',
+    'monolog.logfile' => __DIR__.'/../../logs/log-'.date('Y-m-d').'.log',
     'monolog.name' => $app['name']
 ));
 

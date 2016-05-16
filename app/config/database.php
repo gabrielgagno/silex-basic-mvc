@@ -1,9 +1,11 @@
 <?php
 /**
- * Created by IntelliJ IDEA.
- * User: gabrielgagno
- * Date: 4/20/16
- * Time: 11:54 AM
+ * database.php
+ * This is a configuration file for database connections by this Middleware. Returns
+ * an array of desired settings. May also read from environment files.
+ * @author Gabriel John P. Gagno <ggagno@stratpoint.com>
+ * @version 1.0
+ * @copyright 2016 Stratpoint Technologies, Inc.
  */
 
 return array(

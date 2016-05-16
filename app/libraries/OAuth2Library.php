@@ -1,9 +1,10 @@
 <?php
 /**
- * Created by IntelliJ IDEA.
- * User: gabrielgagno
- * Date: 4/22/16
- * Time: 4:04 PM
+ * OAuth2Library.php
+ * Contains the OAuth2Library class
+ * @author Gabriel John P. Gagno
+ * @version 1.0
+ * @copyright 2016 Stratpoint Technologies, Inc.
  */
 
 namespace App\Libraries;
@@ -15,6 +16,11 @@ use OAuth2\Server as OAuth2Server;
 use OAuth2\GrantType\ClientCredentials;
 use OAuth2\HttpFoundationBridge\Response as BridgeResponse;
 
+/**
+ * Class OAuth2Library
+ * Allows setup and initialization of the OAuth 2.0-compliant authentication service for this middleware
+ * @package App\Libraries
+ */
 class OAuth2Library implements ControllerProviderInterface
 {
     /**
