@@ -12,13 +12,22 @@ require_once __DIR__.'/../../vendor/autoload.php';
 $app = new Silex\Application();
 $app->boot();
 
-# register services
-
-# register config service provider for entire app
+# register config service provider for entire app (NOTE: THIS HAS TO GO FIRST BEFORE
+# THE OTHER CONFIGURABLES)
 $app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/app.php"));
 
-# register config service provder for database
-$app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/database.php"));
+# initialize environment here
+try{
+    $app['env'] = new Dotenv\Dotenv(__DIR__.'/../../', '.env.'.$app['environment']);
+    $app['env']->load();
+}
+catch (Exception $e) {
+    $app->json(['error' => 500, 'error_description' => 'Environment Not Found'], 500)->send();
+}
+
+$app['debug'] = \App\Libraries\CoreHelpersLibrary::env('APP_DEBUG', false);
+
+# register services
 
 # register logger service provider
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
@@ -32,16 +41,11 @@ $app->register(new Silex\Provider\SecurityServiceProvider());
 # register validator provider (optional)
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 
-# initialize environment here
-try{
-    $app['env'] = new Dotenv\Dotenv(__DIR__.'/../../', '.env.'.$app['environment']);
-    $app['env']->load();
-}
-catch (Exception $e) {
-    $app->json(['error' => 500, 'error_description' => 'Environment Not Found'], 500)->send();
-}
+# register config service provider for database
+$app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/database.php"));
 
-$app['debug'] = \App\Libraries\CoreHelpersLibrary::env('APP_DEBUG', false);
+# register config service provider for constants
+$app->register(new \Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/constants.php"));
 
 # routes
 $app->get('/requestfee', 'App\\Controllers\\AppController::requestFee')->before('App\\Middleware\\OAuthMiddleware::handle');

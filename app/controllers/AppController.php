@@ -28,7 +28,7 @@ class AppController
      */
     public function cardLink(Application $app)
     {
-        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], getenv('CARD_LINK'), __FUNCTION__);
+        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], $app['cardlink'], __FUNCTION__);
         $response = P2MEWrapper::responseHandler($app['monolog'], $p2meResponse->code, $p2meResponse);
         return $response;
     }
@@ -40,7 +40,7 @@ class AppController
      */
     public function requestFee(Application $app)
     {
-        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], getenv('REQUEST_FEE'), __FUNCTION__);
+        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], $app['requestfees'], __FUNCTION__);
         $response = P2MEWrapper::responseHandler($app['monolog'], $p2meResponse->code, $p2meResponse);
         return $response;
     }
@@ -52,7 +52,7 @@ class AppController
      */
     public function resetOtp(Application $app)
     {
-        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], getenv('RESET_OTP'), __FUNCTION__);
+        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], $app['resetotp'], __FUNCTION__);
         $response = P2MEWrapper::responseHandler($app['monolog'], $p2meResponse->code, $p2meResponse);
         return $response;
     }
@@ -64,7 +64,7 @@ class AppController
      */
     public function reverse(Application $app)
     {
-        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], getenv('REVERSE'), __FUNCTION__);
+        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], $app['reverse'], __FUNCTION__);
         $response = P2MEWrapper::responseHandler($app['monolog'], $p2meResponse->code, $p2meResponse);
         return $response;
     }
@@ -76,7 +76,7 @@ class AppController
      */
     public function topUp(Application $app)
     {
-        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], getenv('TOP_UP'), __FUNCTION__);
+        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], $app['topup'], __FUNCTION__);
         $response = P2MEWrapper::responseHandler($app['monolog'], $p2meResponse->code, $p2meResponse);
         return $response;
     }
@@ -88,7 +88,7 @@ class AppController
      */
     public function transactionInquiry(Application $app)
     {
-        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], getenv('TRANSACTION_INQUIRY'), __FUNCTION__);
+        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], $app['transactioninquiry'], __FUNCTION__);
         $response = P2MEWrapper::responseHandler($app['monolog'], $p2meResponse->code, $p2meResponse);
         return $response;
     }
@@ -100,7 +100,7 @@ class AppController
      */
     public function validateMobileNumber(Application $app)
     {
-        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], getenv('VALIDATE_MOBILE_NUMBER'), __FUNCTION__);
+        $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], $app['validatemobilenumber'], __FUNCTION__);
         $response = P2MEWrapper::responseHandler($app['monolog'], $p2meResponse->code, $p2meResponse);
         return $response;
     }
