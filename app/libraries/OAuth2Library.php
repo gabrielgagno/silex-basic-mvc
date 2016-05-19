@@ -15,6 +15,7 @@ use OAuth2\Storage\Pdo as OAuth2PdoStorage;
 use OAuth2\Server as OAuth2Server;
 use OAuth2\GrantType\ClientCredentials;
 use OAuth2\HttpFoundationBridge\Response as BridgeResponse;
+use OAuth2\HttpFoundationBridge\Request as Request;
 
 /**
  * Class OAuth2Library
@@ -66,5 +67,15 @@ class OAuth2Library implements ControllerProviderInterface
             'username'  =>  getenv('DB_USERNAME'),
             'password'  =>  getenv('DB_PASSWORD')
         );
+    }
+
+    public function handle(Request $request, Application $app)
+    {
+        $server = $app['oauth_server'];
+        $response = $app['oauth_response'];
+        if (!$server->verifyResourceRequest($app['request'], $response)) {
+            return $server->getResponse();
+        }
+        return null;
     }
 }
