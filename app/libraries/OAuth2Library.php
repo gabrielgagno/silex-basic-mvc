@@ -31,7 +31,7 @@ class OAuth2Library implements ControllerProviderInterface
     {
         $storage = new OAuth2PdoStorage($this->_constructDBString());
 
-        $server = new OAuth2Server($storage, array('issuer' => $_SERVER['HTTP_HOST'], 'access_lifetime' => 60));
+        $server = new OAuth2Server($storage, array('issuer' => $_SERVER['HTTP_HOST'], 'access_lifetime' => $app['access_lifetime']));
 
         $server->addGrantType(new ClientCredentials($storage));
 

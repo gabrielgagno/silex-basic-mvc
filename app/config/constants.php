@@ -14,4 +14,6 @@ return array(
     'topup'                 => \App\Libraries\CoreHelpersLibrary::env('P2ME_BASE_URL', '')."/topup",
     'transactioninquiry'    => \App\Libraries\CoreHelpersLibrary::env('P2ME_BASE_URL', '')."/transactioninquiry",
     'validatemobilenumber'  => \App\Libraries\CoreHelpersLibrary::env('P2ME_BASE_URL', '')."/validatemobilenumber",
+
+    'access_lifetime'       => 300
 );
