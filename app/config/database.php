@@ -9,17 +9,17 @@
  */
 
 return array(
-    'db' => \App\Libraries\CoreHelpersLibrary::env('DB_CONNECTION', 'mysql'),
+    'db' => \App\Helpers\Util::env('DB_CONNECTION', 'mysql'),
     'settings' => array(
         'mysql' => array(
-            'dbname' => \App\Libraries\CoreHelpersLibrary::env('DB_DATABASE', 'sample'),
-            'username'   => \App\Libraries\CoreHelpersLibrary::env('DB_USERNAME', 'usr'),
-            'password'  => \App\Libraries\CoreHelpersLibrary::env('DB_PASSWORD', 'pass'),
-            'host'   => \App\Libraries\CoreHelpersLibrary::env('DB_HOST', 'localhost'),
+            'dbname' => \App\Helpers\Util::env('DB_DATABASE', 'sample'),
+            'username'   => \App\Helpers\Util::env('DB_USERNAME', 'usr'),
+            'password'  => \App\Helpers\Util::env('DB_PASSWORD', 'pass'),
+            'host'   => \App\Helpers\Util::env('DB_HOST', 'localhost'),
             'port'   => '3306'
         )
     ),
     'drivers' => array(
-        'mysql' => \App\Libraries\CoreHelpersLibrary::env('DB_DRIVER', 'pdo_mysql')
+        'mysql' => \App\Helpers\Util::env('DB_DRIVER', 'pdo_mysql')
     )
 );

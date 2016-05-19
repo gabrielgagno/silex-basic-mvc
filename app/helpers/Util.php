@@ -6,14 +6,14 @@
  * Time: 3:46 PM
  */
 
-namespace App\Libraries;
+namespace App\Helpers;
 
 /**
  * Class CoreHelpersLibrary
  * This class conveniently consolidates helper functions that does not fit well in other libraries/classes.
  * @package App\Libraries
  */
-class CoreHelpersLibrary
+class Util
 {
     public static function env($varName, $defaultValue = NULL)
     {

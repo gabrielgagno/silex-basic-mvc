@@ -25,7 +25,7 @@ catch (Exception $e) {
     $app->json(['error' => 500, 'error_description' => 'Environment Not Found'], 500)->send();
 }
 
-$app['debug'] = \App\Libraries\CoreHelpersLibrary::env('APP_DEBUG', false);
+$app['debug'] = \App\Helpers\Util::env('APP_DEBUG', false);
 
 # register services
 
@@ -47,14 +47,8 @@ $app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/databas
 # register config service provider for constants
 $app->register(new \Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/constants.php"));
 
-# routes
-$app->get('/requestfee', 'App\\Controllers\\AppController::requestFee')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->post('/cardlink', 'App\\Controllers\\AppController::cardlink')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->post('/validatemobilenumber', 'App\\Controllers\\AppController::validateMobileNumber')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->get('/topup', 'App\\Controllers\\AppController::topUp')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->post('/reverse', 'App\\Controllers\\AppController::reverse')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->get('/transactioninquiry', 'App\\Controllers\\AppController::transactionInquiry')->before('App\\Middleware\\OAuthMiddleware::handle');
-$app->post('/resetotp', 'App\\Controllers\\AppController::resetOtp')->before('App\\Middleware\\OAuthMiddleware::handle');
-
 # oauth routes
 $app->mount('/', new App\Libraries\OAuth2Library());
+
+# routes
+$app->mount('/', new \App\Routes());
