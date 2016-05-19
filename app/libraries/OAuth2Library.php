@@ -31,7 +31,7 @@ class OAuth2Library implements ControllerProviderInterface
     {
         $storage = new OAuth2PdoStorage($this->_constructDBString());
 
-        $server = new OAuth2Server($storage, array('issuer' => $_SERVER['HTTP_HOST']));
+        $server = new OAuth2Server($storage, array('issuer' => $_SERVER['HTTP_HOST'], 'access_lifetime' => $app['access_lifetime']));
 
         $server->addGrantType(new ClientCredentials($storage));
 
@@ -50,7 +50,7 @@ class OAuth2Library implements ControllerProviderInterface
         $this->setup($app);
 
         $routing = $app['controllers_factory'];
-        $routing->post('/accesstoken', 'App\\Controllers\\OAuthController::authorize');
+        $routing->post('/authorize', 'App\\Controllers\\OAuthController::authorize');
 
         return $routing;
     }
