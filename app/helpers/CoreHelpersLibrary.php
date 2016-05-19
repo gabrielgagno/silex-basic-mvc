@@ -6,7 +6,7 @@
  * Time: 3:46 PM
  */
 
-namespace App\Libraries;
+namespace App\Helpers;
 
 /**
  * Class CoreHelpersLibrary

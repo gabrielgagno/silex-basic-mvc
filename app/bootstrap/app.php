@@ -25,7 +25,7 @@ catch (Exception $e) {
     $app->json(['error' => 500, 'error_description' => 'Environment Not Found'], 500)->send();
 }
 
-$app['debug'] = \App\Libraries\CoreHelpersLibrary::env('APP_DEBUG', false);
+$app['debug'] = \App\Helpers\CoreHelpersLibrary::env('APP_DEBUG', false);
 
 # register services
 
