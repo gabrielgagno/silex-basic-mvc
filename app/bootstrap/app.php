@@ -57,4 +57,4 @@ $app->get('/transactioninquiry', 'App\\Controllers\\AppController::transactionIn
 $app->post('/resetotp', 'App\\Controllers\\AppController::resetOtp')->before('App\\Middleware\\OAuthMiddleware::handle');
 
 # oauth routes
-$app->mount('/oauth', new App\Libraries\OAuth2Library());
+$app->mount('/', new App\Libraries\OAuth2Library());

@@ -50,7 +50,7 @@ class OAuth2Library implements ControllerProviderInterface
         $this->setup($app);
 
         $routing = $app['controllers_factory'];
-        $routing->post('/accesstoken', 'App\\Controllers\\OAuthController::authorize');
+        $routing->post('/authorize', 'App\\Controllers\\OAuthController::authorize');
 
         return $routing;
     }
