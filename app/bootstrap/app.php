@@ -51,10 +51,4 @@ $app->register(new \Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/consta
 $app->mount('/', new App\Libraries\OAuth2Library());
 
 # routes
-$app->get('/requestfee', 'App\\Controllers\\AppController::requestFee')->before('App\\Libraries\\OAuth2Library::handle');
-$app->post('/cardlink', 'App\\Controllers\\AppController::cardlink')->before('App\\Libraries\\OAuth2Library::handle');
-$app->post('/validatemobilenumber', 'App\\Controllers\\AppController::validateMobileNumber')->before('App\\Libraries\\OAuth2Library::handle');
-$app->get('/topup', 'App\\Controllers\\AppController::topUp')->before('App\\Libraries\\OAuth2Library::handle');
-$app->post('/reverse', 'App\\Controllers\\AppController::reverse')->before('App\\Libraries\\OAuth2Library::handle');
-$app->get('/transactioninquiry', 'App\\Controllers\\AppController::transactionInquiry')->before('App\\Libraries\\OAuth2Library::handle');
-$app->post('/resetotp', 'App\\Controllers\\AppController::resetOtp')->before('App\\Libraries\\OAuth2Library::handle');
+$app->mount('/', new \App\Routes());
