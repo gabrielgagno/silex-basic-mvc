@@ -30,7 +30,7 @@ file for that value exists. Otherwise, it will produce an error._
 ## Running the API
 1. Ask for authentication using the POST request.
 ```
-POST /authorize
+POST /accesstoken
 grant_type client_credentials
 client_id <32-bit string from database table oauth_clients>
 client_secret <16-bit string from database table oauth_clients>
