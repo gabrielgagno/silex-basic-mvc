@@ -17,13 +17,15 @@ to run the MySQL dumps included*
 
 ### Setup
 1. Run ```composer install``` to install all needed dependencies.
-2. Set your environment configuration (local, dev, production, other values) in the ```app/config/app.php``` configuration file.
-For this document's purposes, this will be called config-env
-3. This software uses environments for easier configuration. Create a ```.env.<config-env>``` file
-to configure needed settings. Please refer to ```.env.example``` for the data needed to be filled up.
+2. This middleware is configured for multiple environments, allowing for separate environment configurations
+    as needed. To change this, change the ```environment``` key on ```app/config/app.php``` configuration file. For this
+    document's purposes, this will be called ```config-env```.
+3. This software uses environments for easier configuration. Create a ```.env.<config-env>``` file in the root dir to
+configure needed settings. Please refer to ```.env.example``` for the data needed to be filled up.
 
- *This middleware is configured for multiple environments, allowing for separate environment configurations
- as needed. To change this, change the ```environment``` key on ```app/config/app.php``` configuration file.*
+_IMPORTANT: For every value of ```config-env```, make sure to have a corresponding ```.env.<config-env>```. The usual
+values are ```local```, ```dev```, and ```production```, but it's okay to put any key value as long as the environment
+file for that value exists. Otherwise, it will produce an error._
 
 ## Running the API
 1. Ask for authentication using the POST request.
