@@ -9,6 +9,7 @@ The author is Gabriel John Gagno of Stratpoint Technologies, Inc. You can email 
 * Composer
 * MySQL
 * PHP PDO for MySQL
+* MySQL Database (Create a MySQL Database first in your MySQL instance then indicate this in your environment file)
 * MySQL Database structure (Dump included in root/dump folder. Run structure-dump first, then data-dump last)
 
 __NOTE:__ You can also run the Laravel migrations if P2ME CMS Is already set up. This way, there is no need
@@ -16,8 +17,10 @@ to run the MySQL dumps included*
 
 ### Setup
 1. Run ```composer install``` to install all needed dependencies.
-2. This software uses environments for easier configuration. Create a ```.env``` file
- to configure needed settings. Please refer to ```.env.example``` for the data needed to be filled up.
+2. Set your environment configuration (local, dev, production, other values) in the ```app/config/app.php``` configuration file.
+For this document's purposes, this will be called config-env
+3. This software uses environments for easier configuration. Create a ```.env.<config-env>``` file
+to configure needed settings. Please refer to ```.env.example``` for the data needed to be filled up.
 
  *This middleware is configured for multiple environments, allowing for separate environment configurations
  as needed. To change this, change the ```environment``` key on ```app/config/app.php``` configuration file.*
