@@ -31,13 +31,13 @@ class Routes implements ControllerProviderInterface
 
         # Define all user-defined routes here
 
-        $routing->get('/requestfee', 'App\\Controllers\\AppController::requestFee')->before('App\\Libraries\\OAuth2Library::handle');
-        $routing->post('/cardlink', 'App\\Controllers\\AppController::cardlink')->before('App\\Libraries\\OAuth2Library::handle');
-        $routing->post('/validatemobilenumber', 'App\\Controllers\\AppController::validateMobileNumber')->before('App\\Libraries\\OAuth2Library::handle');
-        $routing->get('/topup', 'App\\Controllers\\AppController::topUp')->before('App\\Libraries\\OAuth2Library::handle');
+        $routing->get('/request-fee', 'App\\Controllers\\AppController::requestFee')->before('App\\Libraries\\OAuth2Library::handle');
+        $routing->post('/card-link', 'App\\Controllers\\AppController::cardlink')->before('App\\Libraries\\OAuth2Library::handle');
+        $routing->post('/validate-mobile', 'App\\Controllers\\AppController::validateMobileNumber')->before('App\\Libraries\\OAuth2Library::handle');
+        $routing->get('/top-up', 'App\\Controllers\\AppController::topUp')->before('App\\Libraries\\OAuth2Library::handle');
         $routing->post('/reverse', 'App\\Controllers\\AppController::reverse')->before('App\\Libraries\\OAuth2Library::handle');
-        $routing->get('/transactioninquiry', 'App\\Controllers\\AppController::transactionInquiry')->before('App\\Libraries\\OAuth2Library::handle');
-        $routing->post('/resetotp', 'App\\Controllers\\AppController::resetOtp')->before('App\\Libraries\\OAuth2Library::handle');
+        $routing->get('/transaction-inquiry', 'App\\Controllers\\AppController::transactionInquiry')->before('App\\Libraries\\OAuth2Library::handle');
+        $routing->post('/reset-otp', 'App\\Controllers\\AppController::resetOtp')->before('App\\Libraries\\OAuth2Library::handle');
 
         return $routing;
     }
