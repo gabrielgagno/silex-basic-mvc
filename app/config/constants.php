@@ -15,5 +15,9 @@ return array(
     'transactioninquiry'    => \App\Helpers\Util::env('P2ME_BASE_URL', '')."/transactioninquiry",
     'validatemobilenumber'  => \App\Helpers\Util::env('P2ME_BASE_URL', '')."/validatemobilenumber",
 
-    'access_lifetime'       => 300
+    'access_lifetime'       => 300,
+
+    'pdo_drivers'           => array(
+        'mysql'    => 'pdo_mysql'
+    )
 );
