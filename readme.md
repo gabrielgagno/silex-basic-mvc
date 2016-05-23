@@ -23,7 +23,7 @@ to run the MySQL dumps included*
 3. Create a ```.env.<config-env>``` file in the root dir to configure needed settings. Please refer to
 ```.env.example``` for the data needed to be filled up.
 
-_IMPORTANT: For every value of ```config-env```, make sure to have a corresponding ```.env.<config-env>```. The usual
+_**IMPORTANT**: For every value of ```config-env```, make sure to have a corresponding ```.env.<config-env>```. The usual
 values are ```local```, ```dev```, and ```production```, but it's okay to put any key value as long as the environment
 file for that value exists. Otherwise, it will produce an error._
 
