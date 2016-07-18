@@ -69,6 +69,12 @@ class OAuth2Library implements ControllerProviderInterface
         );
     }
 
+    /**
+     * Handles and filters requests and blocks any invalid attempts to access this API
+     * @param Request $request
+     * @param Application $app
+     * @return array|null|\Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function handle(Request $request, Application $app)
     {
         $server = $app['oauth_server'];
