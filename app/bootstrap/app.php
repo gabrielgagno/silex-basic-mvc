@@ -47,6 +47,21 @@ $app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/databas
 # register config service provider for constants
 $app->register(new \Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/constants.php"));
 
+# Re
+$app->error(function (\Exception $e, $code) use ($app) {
+    if (404 === $code) {
+        return $app->json(
+            array(
+                'error' => 'Resource not found',
+                'error_description' => 'the requested URL is not found'
+                ),
+            404,
+            array('Content-Type' => 'application/json')
+        );
+    }
+    // Do something else (handle error 500 etc.)
+});
+
 # oauth routes
 $app->mount('/', new App\Libraries\OAuth2Library());
 

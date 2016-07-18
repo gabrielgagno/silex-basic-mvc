@@ -69,12 +69,22 @@ class OAuth2Library implements ControllerProviderInterface
         );
     }
 
+    /**
+     * Handles and filters requests and blocks any invalid attempts to access this API
+     * @param Request $request
+     * @param Application $app
+     * @return array|null|\Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function handle(Request $request, Application $app)
     {
         $server = $app['oauth_server'];
         $response = $app['oauth_response'];
+        if(!$request->headers('Authorization')) {
+            $response = array('error' => "invalid_token", 'error_description' => "Invalid token");
+            return $app->json($response, 401, array('Content-Type' => 'application/json'));
+        }
         if (!$server->verifyResourceRequest($app['request'], $response)) {
-            return $server->getResponse();
+            return $response;
         }
         return null;
     }
