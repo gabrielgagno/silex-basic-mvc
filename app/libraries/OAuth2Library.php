@@ -73,8 +73,12 @@ class OAuth2Library implements ControllerProviderInterface
     {
         $server = $app['oauth_server'];
         $response = $app['oauth_response'];
+        if(!$request->headers('Authorization')) {
+            $response = array('error' => "invalid_token", 'error_description' => "Invalid token");
+            return $app->json($response, 401, array('Content-Type' => 'application/json'));
+        }
         if (!$server->verifyResourceRequest($app['request'], $response)) {
-            return $server->getResponse();
+            return $response;
         }
         return null;
     }
