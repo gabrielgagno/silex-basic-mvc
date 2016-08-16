@@ -40,6 +40,10 @@ class AppController
      */
     public function requestFee(Application $app)
     {
+        $validateResponse = $this->_validateMobileNumber($app);
+        if((string) json_decode($validateResponse->getContent())->p2me_result->status!="000") {
+            return $validateResponse;
+        }
         $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], $app['requestfees'], __FUNCTION__);
         $response = P2MEWrapper::responseHandler($app['monolog'], $p2meResponse->code, $p2meResponse);
         return $response;
@@ -98,7 +102,7 @@ class AppController
      * @param Application $app
      * @return Response
      */
-    public function validateMobileNumber(Application $app)
+    private function _validateMobileNumber(Application $app)
     {
         $p2meResponse = P2MEWrapper::requestHandler($app['monolog'], $app['request'], $app['validatemobilenumber'], __FUNCTION__);
         $response = P2MEWrapper::responseHandler($app['monolog'], $p2meResponse->code, $p2meResponse);
