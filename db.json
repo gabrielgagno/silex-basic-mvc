@@ -1,24 +1,24 @@
 {
-  "cardlink": [
+  "cardlink": 
     {
       "status": "051",
       "description": "The customer mobile number cannot be blank"
     }
-  ],
-  "validatemobilenumber": [
+  ,
+  "validatemobilenumber": 
     {
       "status": "000",
       "description": "valid mobile number"
     }
-  ],
-  "requestfees": [
+  ,
+  "requestfees": 
     {
       "status": "100",
       "fee_amount": 250,
-      "description": "cool"
+      "description": "okay"
     }
-  ],
-  "topup": [
+  ,
+  "topup": 
     {
       "status": "00",
       "ref_no": "12345678",
@@ -26,25 +26,25 @@
       "mobile_no": "09061334476",
       "expDate": "010117"
     }
-  ],
-  "reverse": [
+  ,
+  "reverse": 
     {
       "status": "00",
       "ref_no": "22414141",
       "description": "Transaction Cancelled",
       "mobile_no": "090232323422"
     }
-  ],
-  "transactioninquiry": [
+  ,
+  "transactioninquiry": 
     {
       "status": "00",
       "description": "Not Found"
     }
-  ],
-  "resetOTP": [
+  ,
+  "resetOTP": 
     {
       "status": "00",
       "description": "Not Found"
     }
-  ]
+  
 }
