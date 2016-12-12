@@ -1,15 +1,21 @@
 <?php
 /**
- * Created by IntelliJ IDEA.
- * User: gabrielgagno
- * Date: 4/21/16
- * Time: 9:57 PM
+ * OAuth2Controller.php
+ * Contains the OAuthController class
+ * @author Gabriel John P. Gagno
+ * @version 1.0
+ * @copyright 2016 Stratpoint Technologies, Inc.
  */
 namespace App\Controllers;
 
 use OAuth2;
 use Silex\Application;
 
+/**
+ * Class OAuthController
+ * Controller for handling OAuth 2.0-compliant operations
+ * @package App\Controllers
+ */
 class OAuthController
 {
     /**

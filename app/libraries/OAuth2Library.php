@@ -1,9 +1,10 @@
 <?php
 /**
- * Created by IntelliJ IDEA.
- * User: gabrielgagno
- * Date: 4/22/16
- * Time: 4:04 PM
+ * OAuth2Library.php
+ * Contains the OAuth2Library class
+ * @author Gabriel John P. Gagno
+ * @version 1.0
+ * @copyright 2016 Stratpoint Technologies, Inc.
  */
 
 namespace App\Libraries;
@@ -14,7 +15,13 @@ use OAuth2\Storage\Pdo as OAuth2PdoStorage;
 use OAuth2\Server as OAuth2Server;
 use OAuth2\GrantType\ClientCredentials;
 use OAuth2\HttpFoundationBridge\Response as BridgeResponse;
+use OAuth2\HttpFoundationBridge\Request as Request;
 
+/**
+ * Class OAuth2Library
+ * Allows setup and initialization of the OAuth 2.0-compliant authentication service for this middleware
+ * @package App\Libraries
+ */
 class OAuth2Library implements ControllerProviderInterface
 {
     /**
@@ -25,7 +32,7 @@ class OAuth2Library implements ControllerProviderInterface
     {
         $storage = new OAuth2PdoStorage($this->_constructDBString());
 
-        $server = new OAuth2Server($storage, array('issuer' => $_SERVER['HTTP_HOST']));
+        $server = new OAuth2Server($storage, array('issuer' => $_SERVER['HTTP_HOST'], 'access_lifetime' => $app['access_lifetime']));
 
         $server->addGrantType(new ClientCredentials($storage));
 
@@ -60,5 +67,25 @@ class OAuth2Library implements ControllerProviderInterface
             'username'  =>  getenv('DB_USERNAME'),
             'password'  =>  getenv('DB_PASSWORD')
         );
+    }
+
+    /**
+     * Handles and filters requests and blocks any invalid attempts to access this API
+     * @param Request $request
+     * @param Application $app
+     * @return array|null|\Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function handle(Request $request, Application $app)
+    {
+        $server = $app['oauth_server'];
+        $response = $app['oauth_response'];
+        if(!$request->headers('Authorization')) {
+            $response = array('error' => "invalid_token", 'error_description' => "Invalid token");
+            return $app->json($response, 401, array('Content-Type' => 'application/json'));
+        }
+        if (!$server->verifyResourceRequest($app['request'], $response)) {
+            return $response;
+        }
+        return null;
     }
 }

@@ -1,23 +1,48 @@
 <?php
 /**
- * Created by IntelliJ IDEA.
- * User: gabrielgagno
- * Date: 5/4/16
- * Time: 12:04 PM
+ * P2MEWrapper.php
+ * Contains the P2MEWrapper class
+ * @author Gabriel John P. Gagno
+ * @version 1.0
+ * @copyright 2016 Stratpoint Technologies, Inc.
  */
 
 namespace App\Libraries;
 
+use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;
 use Unirest\Request;
+
+/**
+ * Class P2MEWrapper
+ * A wrapper class for request and responses by the P2ME API
+ * @package App\Libraries
+ */
 class P2MEWrapper
 {
-    public static function requestHandler($request, $url, $functionName)
+    /**
+     * Formats, formalizes, and logs requests sent to P2ME API
+     * @param $logger
+     * @param $request
+     * @param $url
+     * @param $functionName
+     * @return \Unirest\Response
+     */
+    public static function requestHandler($logger, $request, $url, $functionName)
     {
-        return Request::get($url, array('x-id' => base64_encode($functionName.date('Y-m-d H:i:s'))), $request->request->all());
+        $xId = base64_encode($functionName.date('Y-m-d H:i:s'));
+        $logger->addInfo("REQUEST ".$url." ".$xId." ".json_encode($request->request->all()));
+        return Request::get($url, array('x-id' => $xId), json_encode($request->request->all()));
     }
 
-    public static function responseHandler($code, $p2meResponse = null)
+    /**
+     * Formats, formalizes, and logs responses received from P2ME API
+     * @param $logger
+     * @param $code
+     * @param null $p2meResponse
+     * @return Response
+     */
+    public static function responseHandler($logger, $code, $p2meResponse = null)
     {
         $status = "fail";
         $message = null; // TODO replace all messages with simple p2meResponse->body later
@@ -62,7 +87,7 @@ class P2MEWrapper
             "timestamp"     => date("Y-m-d H:i:s"),
             "p2me_result"   => $message
         );
-
+        $logger->addInfo("RESPONSE ".$code." ".json_encode($message));
         return new Response(
             json_encode($response),
             $code,

@@ -1,23 +1,25 @@
 <?php
 /**
- * Created by IntelliJ IDEA.
- * User: gabrielgagno
- * Date: 4/20/16
- * Time: 11:54 AM
+ * database.php
+ * This is a configuration file for database connections by this Middleware. Returns
+ * an array of desired settings. May also read from environment files.
+ * @author Gabriel John P. Gagno <ggagno@stratpoint.com>
+ * @version 1.0
+ * @copyright 2016 Stratpoint Technologies, Inc.
  */
 
 return array(
-    'db' => 'mysql',
+    'db' => \App\Helpers\Util::env('DB_CONNECTION', 'mysql'),
     'settings' => array(
         'mysql' => array(
-            'dbname' => 'silexdb',
-            'username'   => 'root',
-            'password'  => '',
-            'host'   => 'localhost',
+            'dbname' => \App\Helpers\Util::env('DB_DATABASE', 'sample'),
+            'username'   => \App\Helpers\Util::env('DB_USERNAME', 'usr'),
+            'password'  => \App\Helpers\Util::env('DB_PASSWORD', 'pass'),
+            'host'   => \App\Helpers\Util::env('DB_HOST', 'localhost'),
             'port'   => '3306'
         )
     ),
     'drivers' => array(
-        'mysql' => 'pdo_mysql'
+        'mysql' => \App\Helpers\Util::env('DB_DRIVER', 'pdo_mysql')
     )
 );
