@@ -18,7 +18,7 @@
       "symfony/validator": "~2.3",
       "symfony/monolog-bridge": "~2.3",
       "symfony/twig-bridge": "~2.3",
-      "doctrine/dbal": "~2.2",
+      "propel/propel": "~2.0@dev",
       "swiftmailer/swiftmailer": "5.*",
       "bshaffer/oauth2-server-php": "~1.8",
       "bshaffer/oauth2-server-httpfoundation-bridge": "~1.0",
